@@ -1,0 +1,44 @@
+--Create a bookstore database
+
+CREATE TABLE bookstore (id INTEGER PRIMARY KEY, title TEXT, quantity INTEGER, price NUMERIC, edition TEXT);
+
+INSERT INTO bookstore VALUES (1, "Gild", 3, 14.99, "paperback");
+INSERT INTO bookstore VALUES (2, "Gild", 5, 21.99, "hardcover");
+INSERT INTO bookstore VALUES (3, "The Love Hypothesis", 7,  14.99, "paperback");
+INSERT INTO bookstore VALUES (4, "The Love Hypothesis", 3, 22.99, "hardcover");
+INSERT INTO bookstore VALUES (5, "If This Is Love", 4, 13.99, "paperback");
+INSERT INTO bookstore VALUES (6, "If This Is Love", 3, 18.99, "hardcover");
+INSERT INTO bookstore VALUES (7, "There With You", 6, 14.99, "paperback");
+INSERT INTO bookstore VALUES (8, "There With You", 8, 21.99, "hardcover");
+INSERT INTO bookstore VALUES (9, "Magic Bites", 4, 7.99, "mass market");
+INSERT INTO bookstore VALUES (10, "Legends and Lattes", 4, 12.99, "paperback");
+INSERT INTO bookstore VALUES (11, "Burn For Me", 2, 7.99, "mass market");
+INSERT INTO bookstore VALUES (12, "Powerless", 1, 14.99, "paperback");
+INSERT INTO bookstore VALUES (13, "Neon Gods", 6, 14.99, "paperback");
+INSERT INTO bookstore VALUES (14, "Neon Gods", 3, 21.99, "hardcover");
+INSERT INTO bookstore VAlues (15, "The Naked Fisherman", 4, 14.99, "paperback");
+
+--display the database ordered by price
+SELECT * FROM bookstore ORDER BY price;
+
+--How many items are in the store for 14.99
+SELECT SUM(quantity) AS quantity1499 FROM bookstore WHERE price =14.99;
+
+--How many books of each edition are in the store
+SELECT edition, SUM(quantity) FROM bookstore
+GROUP BY edition; 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
