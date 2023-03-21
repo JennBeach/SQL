@@ -1,0 +1,84 @@
+/* Create table about famous people and what they do */
+
+CREATE TABLE famous_people ( 
+    id INTEGER PRIMARY KEY, 
+    full_name TEXT);
+    
+INSERT INTO famous_people (id, full_name) VALUES (1, "Cher");
+INSERT INTO famous_people (id, full_name) VALUES (2,"Queen Latifah");
+INSERT INTO famous_people (id, full_name) VALUES (3, "Mark Walberg");
+INSERT INTO famous_people (id, full_name) VALUES (4, "Will Smith");
+INSERT INTO famous_people (id, full_name) VALUES (5, "Mandy Moore");
+INSERT INTO famous_people (id, full_name) VALUES (6, "Lady Gaga");
+INSERT INTO famous_people (id, full_name) VALUES (7, "Jennifer Lopez");
+INSERT INTO famous_people (id, full_name)
+VALUES (8, "Jennifer Lawerence");
+INSERT INTO famous_people (id, full_name) VALUES (9, "Bri Larson");
+INSERT INTO famous_people (id, full_name) VALUES (10, "Hugh Jackman");
+INSERT INTO famous_people (id, full_name) VALUES (11, "Colbie Caillat");
+INSERT INTO famous_people (id, full_name)
+VALUES (12, "Sam Smith");
+INSERT INTO famous_people (id, full_name)
+VALUES (13, "Shakira");
+INSERT INTO famous_people (id, full_name)
+VALUES (14, "Tom Hanks");
+INSERT INTO famous_people (id, full_name) VALUES (15, "Sandra Bullock");
+
+CREATE TABLE singers (
+id INTEGER PRIMARY KEY AUTOINCREMENT, 
+famous_people_id INTEGER,
+profession TEXT);
+
+INSERT INTO singers (famous_people_id, profession) VALUES (1, 'singer');
+INSERT INTO singers (famous_people_id, profession) VALUES (2, 'singer');
+INSERT INTO singers (famous_people_id, profession) VALUES (3, 'singer');
+INSERT INTO singers (famous_people_id, profession) VALUES (4, 'singer');
+INSERT INTO singers (famous_people_id, profession) VALUES (5, 'singer');
+INSERT INTO singers (famous_people_id, profession) VALUES (6, 'singer');
+INSERT INTO singers (famous_people_id, profession) VALUES (7, 'singer');
+INSERT INTO singers (famous_people_id, profession) VALUES (10, 'singer');
+INSERT INTO singers (famous_people_id, profession) VALUES (11, 'singer');
+INSERT INTO singers (famous_people_id, profession) VALUES (12, 'singer'); 
+INSERT INTO singers (famous_people_id, profession) VALUES (13, 'singer');
+
+CREATE TABLE actors (
+id INTEGER PRIMARY KEY AUTOINCREMENT, 
+famous_people_id INTEGER,
+profession TEXT);
+
+INSERT INTO actors (famous_people_id, profession) VALUES (1, 'actor');
+INSERT INTO actors (famous_people_id, profession) VALUES (2, 'actor');
+INSERT INTO actors (famous_people_id, profession) VALUES (3, 'actor');
+INSERT INTO actors (famous_people_id, profession) VALUES (4, 'actor');
+INSERT INTO actors (famous_people_id, profession) VALUES (5, 'actor');
+INSERT INTO actors (famous_people_id, profession) VALUES (6, 'actor');
+INSERT INTO actors (famous_people_id, profession) VALUES (7, 'actor');
+INSERT INTO actors (famous_people_id, profession) VALUES (8, 'actor');
+INSERT INTO actors (famous_people_id, profession) VALUES (9, 'actor');
+INSERT INTO actors (famous_people_id, profession) VALUES (10, 'actor');
+INSERT INTO actors (famous_people_id, profession) VALUES (14, 'actor');
+INSERT INTO actors (famous_people_id, profession) VALUES (15, 'actor');
+
+/*What famous people are singers and what ones are actors or both?*/
+
+SELECT full_name AS Name, singers.profession AS Singers, actors.profession AS Actors FROM famous_people
+LEFT JOIN singers 
+ON famous_people.id = singers.famous_people_id
+LEFT JOIN actors
+ON famous_people.id = actors.famous_people_id;
+
+/*How many famous people are singers and how many are actors*/
+
+SELECT COUNT(singers.profession) AS Singers, COUNT(actors.profession) AS Actors FROM famous_people
+LEFT JOIN singers
+ON famous_people.id = singers.famous_people_id
+LEFT JOIN actors
+ON famous_people.id = actors.famous_people_id;
+
+/*How many famous people are both singers and actors?*/
+
+SELECT COUNT(*) AS Both_Singer_and_Actor FROM famous_people 
+WHERE  (SELECT COUNT(*) FROM singers s WHERE famous_people.id = s.famous_people_id) AND 
+       (SELECT COUNT (*) FROM actors a WHERE famous_people.id = a.famous_people_id);
+
+
