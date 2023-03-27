@@ -1,0 +1,39 @@
+Analysis of Spotify top 50 songs from 2021
+--Data used
+https://www.kaggle.com/datasets/equinxx/spotify-top-50-songs-in-2021
+
+--What songs have a popularity of 90 or above?
+SELECT track_name, popularity
+FROM BIT_DB.Spotifydata
+WHERE Popularity >=90
+ORDER BY Popularity DESC;
+
+-- How many songs does each artist have in the top 50?
+SELECT artist_name, COUNT(artist_name) AS total_songs
+FROM BIT_DB.Spotifydata
+GROUP BY artist_name
+ORDER BY total_songs DESC;
+
+-- What is the average danceability of all songs
+SELECT AVG(danceability)
+FROM BIT_DB.Spotifydata;
+
+-- What are the top 10 songs by popularity?
+SELECT track_name, artist_name, popularity
+FROM BIT_DB.Spotifydata
+ORDER BY Popularity desc
+LIMIT 10;
+
+-- What is the longest song?
+SELECT track_name, artist_name, MAX(duration_ms)
+FROM BIT_DB.Spotifydata;
+
+-- What is the shortest song?
+SELECT track_name, artist_name, MIN(duration_ms)
+FROM BIT_DB.Spotifydata;
+
+--What is the average energy for the top 10 songs by popularity?
+SELECT AVG(energy) AS 'Average Energy'
+FROM BIT_DB.Spotifydata
+ORDER BY popularity DESC
+LIMIT 10;
